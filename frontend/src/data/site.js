@@ -1,8 +1,8 @@
 export const company = {
-  name: "Sri Maruthi Builders",
+  name: "Sri Maruthi Construction",
   tagline: "Your trusted real estate partner",
   description:
-    "Sri Maruthi Builders helps families and investors find exceptional homes and commercial spaces with honest advice, curated listings, and end-to-end support.",
+    "Sri Maruthi Construction helps families and investors find exceptional homes and commercial spaces with honest advice, curated listings, and end-to-end support.",
   phone: "+91 9952995222",
   phoneHref: "tel:+919952995222",
   email: "srimaruthibuilder@gmail.com",

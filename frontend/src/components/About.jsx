@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { images } from "../data/site";
+import { company, images } from "../data/site";
 
 const stats = [
   { value: 15, suffix: "+", label: "Years Experience" },
@@ -10,38 +10,37 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="bg-cream py-20 lg:py-28">
+    <section id="about" className="bg-white py-20 lg:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:px-8">
         <div className="relative mb-10">
           <img
             src={images.about}
             alt="Bright living room in a contemporary residence"
-            className="h-[420px] w-full rounded-3xl object-cover shadow-[0_24px_50px_rgba(28,25,23,0.16)] sm:h-[520px]"
+            className="h-[420px] w-full rounded-2xl object-cover shadow-[0_20px_40px_-16px_rgba(15,23,42,0.22)] sm:h-[520px]"
             loading="lazy"
           />
-          <aside className="absolute -bottom-8 right-4 w-[min(100%,18rem)] rounded-2xl bg-charcoal p-5 text-white shadow-xl sm:right-8">
-            <p className="font-display text-3xl text-gold">15+</p>
-            <p className="mt-1 text-sm text-white/80">Years helping clients find homes they are proud of.</p>
+          <aside className="absolute -bottom-8 right-4 w-[min(100%,18rem)] rounded-2xl border border-[#E2E8F0] bg-white p-5 text-[#0F172A] shadow-[0_12px_28px_-4px_rgba(30,58,138,0.08)] sm:right-8">
+            <p className="font-display text-3xl font-extrabold text-[#1E3A8A]">15+</p>
+            <p className="mt-1 text-sm text-[#64748B]">Years helping clients find homes they are proud of.</p>
           </aside>
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-deep">About Us</p>
-          <h2 className="mt-3 font-display text-3xl text-charcoal sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
+          <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#0F766E]">About Us</p>
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl lg:text-[2.6rem] lg:leading-tight">
             Building Better Spaces for Better Living
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-stone-soft">
-            EstatePro is a boutique real estate practice built on trust, market knowledge, and a calm,
-            considered process. We listen first, then present properties that fit how you actually live
-            and invest — not a long list of listings that miss the mark.
+          <p className="mt-5 text-base leading-7 text-[#64748B]">
+            {company.name} is committed to thoughtful spaces, clear guidance, and a considered process.
+            We listen first, then help you explore properties that fit how you want to live and invest.
           </p>
-          <p className="mt-4 text-base leading-relaxed text-stone-soft">
-            Our advisors stay with you from the first viewing through negotiation and handover, so every
-            decision feels informed and every home feels like it belongs to you.
+          <p className="mt-4 text-base leading-7 text-[#64748B]">
+            From the first conversation through the next steps, our team works to make each decision
+            feel informed and every space feel right for you.
           </p>
           <a
             href="#services"
-            className="mt-8 inline-flex rounded-full bg-charcoal px-6 py-3 text-sm font-semibold text-white transition hover:bg-gold hover:text-charcoal"
+            className="mt-8 inline-flex rounded-xl bg-[#1E3A8A] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#2563EB]"
           >
             Learn More
           </a>
@@ -95,12 +94,12 @@ function StatCard({ value, suffix, label }) {
   }, [value]);
 
   return (
-    <article ref={ref} className="rounded-2xl bg-ivory p-6 shadow-sm ring-1 ring-sand">
-      <p className="font-display text-4xl text-charcoal">
+    <article ref={ref} className="rounded-2xl border border-[#E2E8F0] bg-white p-6 shadow-[0_4px_16px_-2px_rgba(30,58,138,0.04),0_2px_6px_-1px_rgba(15,23,42,0.03)]">
+      <p className="font-display text-4xl font-bold text-[#1E3A8A]">
         {display}
         {suffix}
       </p>
-      <p className="mt-2 text-sm font-medium text-stone-soft">{label}</p>
+      <p className="mt-2 text-sm font-medium text-[#64748B]">{label}</p>
     </article>
   );
 }

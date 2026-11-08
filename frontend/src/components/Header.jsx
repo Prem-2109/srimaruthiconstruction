@@ -32,44 +32,46 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b border-[#E2E8F0]/80 transition-all duration-300 ${
         scrolled || menuOpen
-          ? "bg-charcoal/95 shadow-[0_8px_30px_rgba(28,25,23,0.18)] backdrop-blur-sm"
-          : "bg-transparent"
+          ? "bg-white/95 shadow-[0_20px_32px_-6px_rgba(15,23,42,0.10)] backdrop-blur-xl"
+          : "bg-white/85 backdrop-blur-xl"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        <a href="#home" className="flex items-center gap-2.5 text-white" onClick={closeMenu}>
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-charcoal">
+        <a href="#home" className="flex items-center gap-2.5 text-[#0F172A]" onClick={closeMenu}>
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1E3A8A] text-white">
             <Building2 className="h-5 w-5" aria-hidden="true" />
           </span>
-          <span className="font-display text-xl tracking-wide">{company.name}</span>
+          <span className="font-display text-base font-bold tracking-tight sm:text-lg">{company.name}</span>
         </a>
 
-        {/* <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium tracking-wide text-white/85 transition hover:text-gold"
+              onClick={closeMenu}
+              className="text-sm font-semibold text-[#475569] transition hover:text-[#0F766E]"
             >
               {link.label}
             </a>
           ))}
-        </nav> */}
+        </nav>
 
         <div className="hidden lg:block">
           <a
             href="#reach-us"
-            className="inline-flex rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-charcoal transition hover:bg-gold-deep hover:text-white"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#1E3A8A] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2563EB]"
           >
-            Get Started
+            Book a consultation
+            <span aria-hidden="true">→</span>
           </a>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#1E3A8A] transition hover:bg-[#EFF6FF] lg:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -81,17 +83,17 @@ export default function Header() {
 
       <div
         id="mobile-menu"
-        className={`overflow-hidden border-t border-white/10 bg-charcoal lg:hidden transition-[max-height,opacity] duration-300 ${
+        className={`overflow-hidden border-t border-[#E2E8F0] bg-white lg:hidden transition-[max-height,opacity] duration-300 ${
           menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        {/* <nav className="flex flex-col gap-1 px-5 py-4" aria-label="Mobile">
+        <nav className="flex flex-col gap-1 px-5 py-4" aria-label="Mobile">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-base text-white/90 transition hover:bg-white/5 hover:text-gold"
+              className="rounded-xl px-3 py-3 text-base font-medium text-[#475569] transition hover:bg-[#F1F5F9] hover:text-[#1E3A8A]"
             >
               {link.label}
             </a>
@@ -99,11 +101,11 @@ export default function Header() {
           <a
             href="#reach-us"
             onClick={closeMenu}
-            className="mt-2 rounded-full bg-gold px-4 py-3 text-center text-sm font-semibold text-charcoal"
+            className="mt-2 rounded-xl bg-[#1E3A8A] px-4 py-3 text-center text-sm font-semibold text-white"
           >
-            Get Started
+            Book a consultation
           </a>
-        </nav> */}
+        </nav>
       </div>
     </header>
   );

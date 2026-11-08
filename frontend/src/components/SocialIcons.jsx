@@ -10,8 +10,8 @@ const icons = {
 export default function SocialIcons({ variant = "light" }) {
   const className =
     variant === "dark"
-      ? "inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition hover:border-gold hover:text-gold"
-      : "inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-charcoal shadow-sm ring-1 ring-sand transition hover:bg-charcoal hover:text-gold";
+      ? "inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition hover:border-[#5EEAD4] hover:text-[#5EEAD4]"
+      : "inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E2E8F0] bg-white text-[#1E3A8A] shadow-sm transition hover:border-[#1E3A8A] hover:bg-[#1E3A8A] hover:text-white";
 
   return (
     <div className="flex gap-3">

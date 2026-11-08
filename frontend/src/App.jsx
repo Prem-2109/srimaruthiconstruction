@@ -1,11 +1,11 @@
-// import Header from "./components/Header";
-import HeroSection from "./components/Hero-section";
-// import About from "./components/About";
-// import Services from "./components/Services";
-// import Projects from "./components/Projects";
-// import ReachUs from "./components/ReachUs";
-// import Contact from "./components/Contact";
-// import Footer from "./components/Footer";
+import Home from "./components/Home";
+import Header from "./components/Header";
+import About from "./components/About";
+import Services from "./components/Services";
+import Projects from "./components/Projects";
+import ReachUs from "./components/ReachUs";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -16,16 +16,16 @@ export default function App() {
       >
         Skip to content
       </a>
-      {/* <Header /> */}
+      <Header />
       <main>
-        <HeroSection />
-        {/* <About />
+        <Home />
+        <About />
         <Services />
         <Projects />
         <ReachUs />
-        <Contact /> */}
+        <Contact />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

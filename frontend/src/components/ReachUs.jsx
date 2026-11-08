@@ -72,12 +72,12 @@ export default function ReachUs() {
   };
 
   return (
-    <section id="reach-us" className="bg-ivory py-20 lg:py-28">
+    <section id="reach-us" className="bg-[#F8FAFC] py-20 lg:py-24">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-deep">Reach Us</p>
-          <h2 className="mt-3 font-display text-3xl text-charcoal sm:text-4xl">Request a Conversation</h2>
-          <p className="mt-4 max-w-xl text-stone-soft">
+          <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#0F766E]">Reach Us</p>
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Request a Conversation</h2>
+          <p className="mt-4 max-w-xl leading-7 text-[#64748B]">
             Share a few details and we will call you to understand your goals, preferred locations, and
             timeline — with no obligation.
           </p>
@@ -119,7 +119,7 @@ export default function ReachUs() {
             {message && (
               <p
                 role="status"
-                className={`rounded-lg px-4 py-3 text-sm ${
+                className={`rounded-xl border px-4 py-3 text-sm ${
                   status === "success" ? "bg-emerald-50 text-emerald-800" : "bg-red-50 text-red-800"
                 }`}
               >
@@ -130,34 +130,35 @@ export default function ReachUs() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-full bg-gold px-6 py-3.5 text-sm font-semibold text-charcoal transition hover:bg-gold-deep hover:text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              className="w-full rounded-xl bg-[#1E3A8A] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#2563EB] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               {submitting ? "Sending…" : "Request a Call"}
             </button>
           </form>
         </div>
 
-        <aside className="rounded-3xl bg-charcoal p-8 text-white lg:p-10">
-          <h3 className="font-display text-2xl">Visit or Call</h3>
-          <ul className="mt-8 space-y-5 text-sm text-white/80">
+        <aside className="rounded-2xl border border-[#E2E8F0] bg-white p-8 text-[#0F172A] shadow-[0_4px_16px_-2px_rgba(30,58,138,0.04),0_2px_6px_-1px_rgba(15,23,42,0.03)] lg:p-10">
+          <span className="inline-flex rounded-full bg-[#EFF6FF] px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-[#1E3A8A]">Contact details</span>
+          <h3 className="mt-4 font-display text-2xl font-bold">Visit or Call</h3>
+          <ul className="mt-8 space-y-5 text-sm text-[#475569]">
             <li className="flex gap-3">
-              <Phone className="mt-0.5 h-5 w-5 text-gold" aria-hidden="true" />
-              <a href={company.phoneHref} className="hover:text-gold">
+              <Phone className="mt-0.5 h-5 w-5 text-[#0F766E]" aria-hidden="true" />
+              <a href={company.phoneHref} className="hover:text-[#1E3A8A]">
                 {company.phone}
               </a>
             </li>
             <li className="flex gap-3">
-              <Mail className="mt-0.5 h-5 w-5 text-gold" aria-hidden="true" />
-              <a href={company.emailHref} className="hover:text-gold">
+              <Mail className="mt-0.5 h-5 w-5 text-[#0F766E]" aria-hidden="true" />
+              <a href={company.emailHref} className="hover:text-[#1E3A8A]">
                 {company.email}
               </a>
             </li>
             <li className="flex gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 text-gold" aria-hidden="true" />
+              <MapPin className="mt-0.5 h-5 w-5 text-[#0F766E]" aria-hidden="true" />
               <span>{company.address}</span>
             </li>
             <li className="flex gap-3">
-              <Clock className="mt-0.5 h-5 w-5 text-gold" aria-hidden="true" />
+              <Clock className="mt-0.5 h-5 w-5 text-[#0F766E]" aria-hidden="true" />
               <span>{company.hours}</span>
             </li>
           </ul>
@@ -174,16 +175,16 @@ export default function ReachUs() {
 function FormField({ id, label, error, ...inputProps }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-charcoal">
-        {label} <span className="text-gold-deep">*</span>
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-[#0F172A]">
+        {label} <span className="text-[#0F766E]">*</span>
       </label>
       <input
         id={id}
         required
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={`w-full rounded-lg border bg-white px-4 py-3 text-sm text-ink placeholder:text-stone-400 transition focus:border-gold ${
-          error ? "border-red-400" : "border-sand"
+        className={`w-full rounded-xl border bg-white px-4 py-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] transition focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 ${
+          error ? "border-red-400" : "border-[#E2E8F0]"
         }`}
         {...inputProps}
       />
@@ -195,4 +196,3 @@ function FormField({ id, label, error, ...inputProps }) {
     </div>
   );
 }
-
