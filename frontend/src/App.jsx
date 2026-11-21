@@ -1,20 +1,25 @@
+import { lazy, Suspense } from "react";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import About from "./components/About";
 import Services from "./components/Services";
 import Projects from "./components/Projects";
-import ReachUs from "./components/ReachUs";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+
+// Lazy load below-the-fold sections for maximum initial page performance
+const VaastuSection = lazy(() => import("./components/VaastuSection"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const ReachUs = lazy(() => import("./components/ReachUs"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
 
 export default function App() {
   return (
-    <div className="min-w-0 overflow-x-hidden">
+    <div className="min-w-0 overflow-x-hidden bg-white text-slate-900 selection:bg-amber-600 selection:text-white">
       <a
         href="#home"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-gold focus:px-4 focus:py-2 focus:text-charcoal"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-xl focus:bg-amber-700 focus:px-4 focus:py-2.5 focus:text-white focus:shadow-lg focus:outline-none"
       >
-        Skip to content
+        Skip to main content
       </a>
       <Header />
       <main>
@@ -22,10 +27,16 @@ export default function App() {
         <About />
         <Services />
         <Projects />
-        <ReachUs />
-        <Contact />
+        <Suspense fallback={<div className="min-h-[200px]" />}>
+          <VaastuSection />
+          <Testimonials />
+          <ReachUs />
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<div className="min-h-[100px]" />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

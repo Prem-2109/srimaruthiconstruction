@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { CheckCircle2, Clock, Mail, MapPin, Phone, Send, Train } from "lucide-react";
 import { company } from "../data/site";
 import SocialIcons from "./SocialIcons";
 
-const initial = { fullName: "", email: "", phone: "" };
+const initial = { fullName: "", email: "", phone: "", interest: "Individual Villa in Veppampattu" };
 
 function validate(values) {
   const errors = {};
@@ -60,10 +60,10 @@ export default function ReachUs() {
         setTimeout(() => {
           if (values.email.toLowerCase().includes("fail@")) reject(new Error("network"));
           else resolve();
-        }, 900);
+        }, 800);
       });
       setStatus("success");
-      setMessage("Thank you. An advisor will call you shortly.");
+      setMessage("Thank you! Our Veppampattu site manager will call you to schedule your free site visit.");
       setValues(initial);
     } catch {
       setStatus("error");
@@ -72,14 +72,19 @@ export default function ReachUs() {
   };
 
   return (
-    <section id="reach-us" className="bg-[#F8FAFC] py-20 lg:py-24">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#0F766E]">Reach Us</p>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-[#0F172A] sm:text-4xl">Request a Conversation</h2>
-          <p className="mt-4 max-w-xl leading-7 text-[#64748B]">
-            Share a few details and we will call you to understand your goals, preferred locations, and
-            timeline — with no obligation.
+    <section id="reach-us" className="relative bg-slate-50/70 py-20 lg:py-28 overflow-hidden">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:px-8">
+        
+        {/* Left Form Block */}
+        <div className="rounded-3xl border border-slate-200/80 bg-white p-8 sm:p-10 shadow-sm">
+          <span className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-amber-900">
+            Book Free Site Visit
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+            Schedule a Free Veppampattu Site Inspection
+          </h2>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Interested in viewing our ready-to-move individual villas or DTCP approved plots near Veppampattu railway station? Free car pick-up and drop available.
           </p>
 
           <form className="mt-8 space-y-5" onSubmit={onSubmit} noValidate>
@@ -87,86 +92,144 @@ export default function ReachUs() {
               id="fullName"
               name="fullName"
               label="Full Name"
-              placeholder="Alexandra Bennett"
+              placeholder="e.g. Ramesh Kumar"
               value={values.fullName}
               error={errors.fullName}
               onChange={onChange}
               autoComplete="name"
             />
-            <FormField
-              id="email"
-              name="email"
-              type="email"
-              label="Email Address"
-              placeholder="you@example.com"
-              value={values.email}
-              error={errors.email}
-              onChange={onChange}
-              autoComplete="email"
-            />
-            <FormField
-              id="phone"
-              name="phone"
-              type="tel"
-              label="Phone Number"
-              placeholder="+1 (212) 555-0182"
-              value={values.phone}
-              error={errors.phone}
-              onChange={onChange}
-              autoComplete="tel"
-            />
+            <div className="grid gap-5 sm:grid-cols-2">
+              <FormField
+                id="email"
+                name="email"
+                type="email"
+                label="Email Address"
+                placeholder="ramesh@example.com"
+                value={values.email}
+                error={errors.email}
+                onChange={onChange}
+                autoComplete="email"
+              />
+              <FormField
+                id="phone"
+                name="phone"
+                type="tel"
+                label="Phone Number"
+                placeholder="+91 99529 95222"
+                value={values.phone}
+                error={errors.phone}
+                onChange={onChange}
+                autoComplete="tel"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="interest" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-800">
+                Property Interested In
+              </label>
+              <select
+                id="interest"
+                name="interest"
+                value={values.interest}
+                onChange={onChange}
+                className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-900 transition-all focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-600/20"
+              >
+                <option value="Individual Villa in Veppampattu">Ready to Move Individual Villa (2BHK / 3BHK)</option>
+                <option value="DTCP Approved Plot in Veppampattu">DTCP / CMDA Approved Plot</option>
+                <option value="Construction on My Own Plot">Construction on My Own Plot in Veppampattu</option>
+                <option value="Duplex House Near Railway Station">Duplex House Near Railway Station</option>
+              </select>
+            </div>
 
             {message && (
-              <p
+              <div
                 role="status"
-                className={`rounded-xl border px-4 py-3 text-sm ${
-                  status === "success" ? "bg-emerald-50 text-emerald-800" : "bg-red-50 text-red-800"
+                className={`flex items-start gap-3 rounded-xl border p-4 text-sm ${
+                  status === "success"
+                    ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                    : "border-red-200 bg-red-50 text-red-800"
                 }`}
               >
-                {message}
-              </p>
+                {status === "success" && <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600 mt-0.5" />}
+                <span>{message}</span>
+              </div>
             )}
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-xl bg-[#1E3A8A] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#2563EB] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-7 py-4 text-sm font-bold text-white shadow-lg shadow-slate-900/15 transition-all hover:bg-amber-600 hover:shadow-amber-600/20 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
-              {submitting ? "Sending…" : "Request a Call"}
+              <Send className="h-4 w-4" />
+              <span>{submitting ? "Booking..." : "Confirm Free Site Visit"}</span>
             </button>
           </form>
         </div>
 
-        <aside className="rounded-2xl border border-[#E2E8F0] bg-white p-8 text-[#0F172A] shadow-[0_4px_16px_-2px_rgba(30,58,138,0.04),0_2px_6px_-1px_rgba(15,23,42,0.03)] lg:p-10">
-          <span className="inline-flex rounded-full bg-[#EFF6FF] px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-[#1E3A8A]">Contact details</span>
-          <h3 className="mt-4 font-display text-2xl font-bold">Visit or Call</h3>
-          <ul className="mt-8 space-y-5 text-sm text-[#475569]">
-            <li className="flex gap-3">
-              <Phone className="mt-0.5 h-5 w-5 text-[#0F766E]" aria-hidden="true" />
-              <a href={company.phoneHref} className="hover:text-[#1E3A8A]">
-                {company.phone}
-              </a>
-            </li>
-            <li className="flex gap-3">
-              <Mail className="mt-0.5 h-5 w-5 text-[#0F766E]" aria-hidden="true" />
-              <a href={company.emailHref} className="hover:text-[#1E3A8A]">
-                {company.email}
-              </a>
-            </li>
-            <li className="flex gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 text-[#0F766E]" aria-hidden="true" />
-              <span>{company.address}</span>
-            </li>
-            <li className="flex gap-3">
-              <Clock className="mt-0.5 h-5 w-5 text-[#0F766E]" aria-hidden="true" />
-              <span>{company.hours}</span>
-            </li>
-          </ul>
+        {/* Right Contact Details Aside */}
+        <aside className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-slate-900 p-8 sm:p-10 text-white shadow-xl">
+          <div>
+            <span className="inline-flex rounded-full bg-amber-500/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-300">
+              Veppampattu Branch
+            </span>
+            <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-white">
+              Connect With Local Office
+            </h3>
+            <p className="mt-2 text-xs leading-relaxed text-slate-400">
+              Drop by our office or call us directly to view ready model villas and approved layouts near Veppampattu railway station.
+            </p>
 
-          <div className="mt-10">
+            <ul className="mt-8 space-y-6 text-sm text-slate-300">
+              <li className="flex gap-3.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-amber-400">
+                  <Phone className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div>
+                  <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Direct Phone</span>
+                  <a href={company.phoneHref} className="text-sm font-bold text-white hover:text-amber-300 transition">
+                    {company.phone}
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-3.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-amber-400">
+                  <Mail className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div>
+                  <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Email</span>
+                  <a href={company.emailHref} className="text-sm font-bold text-white hover:text-amber-300 transition">
+                    {company.email}
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-3.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-amber-400">
+                  <MapPin className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div>
+                  <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Office Location</span>
+                  <span className="text-sm text-slate-200">{company.address}</span>
+                  <span className="block text-[11px] text-amber-400 mt-0.5">2 Mins from Veppampattu Railway Station</span>
+                </div>
+              </li>
+              <li className="flex gap-3.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-amber-400">
+                  <Clock className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div>
+                  <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Working Hours</span>
+                  <span className="text-sm text-slate-200">{company.hours}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-10 border-t border-white/10 pt-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Follow Us</p>
             <SocialIcons variant="dark" />
           </div>
         </aside>
+
       </div>
     </section>
   );
@@ -175,21 +238,21 @@ export default function ReachUs() {
 function FormField({ id, label, error, ...inputProps }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-[#0F172A]">
-        {label} <span className="text-[#0F766E]">*</span>
+      <label htmlFor={id} className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-800">
+        {label} <span className="text-amber-600">*</span>
       </label>
       <input
         id={id}
         required
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={`w-full rounded-xl border bg-white px-4 py-3 text-sm text-[#0F172A] placeholder:text-[#94A3B8] transition focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 ${
-          error ? "border-red-400" : "border-[#E2E8F0]"
+        className={`w-full rounded-xl border bg-white px-4 py-3.5 text-sm text-slate-900 placeholder:text-slate-400 transition-all focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-600/20 ${
+          error ? "border-red-400 bg-red-50/20" : "border-slate-200"
         }`}
         {...inputProps}
       />
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-sm text-red-700">
+        <p id={`${id}-error`} className="mt-1.5 text-xs font-semibold text-red-600">
           {error}
         </p>
       )}
